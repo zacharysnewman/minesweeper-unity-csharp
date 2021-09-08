@@ -106,7 +106,7 @@ public struct Map : IEquatable<Map>
         var newTiles = new Dictionary<Coords, Tile>(tiles);
         foreach (var t in nearbyTiles)
         {
-            newTiles = Activate(newTiles, t.coords, false);
+            newTiles = newTiles[t.coords].tileState != TileState.revealed ? Activate(newTiles, t.coords, false) : newTiles;
         }
         return newTiles;
     }
